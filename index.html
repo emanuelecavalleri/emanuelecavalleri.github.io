@@ -9,6 +9,18 @@
 <title>Emanuele Cavalleri</title>
 </head>
 
+<script>
+  const coll = document.querySelectorAll(".collapsible");
+  coll.forEach(button => {
+    button.addEventListener("click", () => {
+      button.classList.toggle("active");
+      const content = button.nextElementSibling;
+      content.style.display = content.style.display === "block" ? "none" : "block";
+    });
+  });
+</script>
+
+	
 <body>
 
 <h1>Emanuele Cavalleri</h1>
