@@ -5,3 +5,29 @@ H1 { font-size: x-large; font-family: arial, helvetica, sans-serif; color: #8080
 H2 { font-size: large; font-family: arial, helvetica, sans-serif; color: #009933 }
 H3 { font-family: arial, helvetica, sans-serif; color: #009933 }
 .parent { font-family: arial, helvetica, sans-serif}
+
+.collapsible {
+  background-color: #eee;
+  color: #444;
+  cursor: pointer;
+  padding: 8px 16px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 1.1em;
+  transition: background-color 0.2s ease;
+  margin-top: 10px;
+}
+
+.collapsible:hover {
+  background-color: #ccc;
+}
+
+.content {
+  padding: 0 16px;
+  display: none;
+  overflow: hidden;
+  border-left: 2px solid #ddd;
+  margin-bottom: 10px;
+}
