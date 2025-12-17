@@ -9,10 +9,12 @@
 <title>Emanuele Cavalleri</title>
 
 <style>
-  .year-toggle {
-    cursor: pointer;
-    user-select: none;
-  }
+.year-toggle {
+  cursor: pointer;
+  user-select: none;
+  margin-top: 8px;  
+  margin-bottom: 15px;
+}
   .year-toggle::after {
     content: " ▼";
     font-size: 0.8em;
@@ -20,10 +22,20 @@
   .collapsed::after {
     content: " ▶";
   }
-  .year-content {
-    display: none;
-    margin-left: 15px;
-  }
+.year-content {
+  max-height: 0;
+  overflow: hidden;
+  margin-left: 15px;
+  margin-top: -4px;   
+  opacity: 0;
+  transition: max-height 0.4s ease, opacity 0.3s ease;
+}
+
+
+.year-content.open {
+  opacity: 1;
+}
+
 </style>
 </head>
 
@@ -328,30 +340,37 @@ I received a MSc degree (cum laude) in Bioinformatics at the University of Milan
 <font size="+1"><b>E-mail address</b>: <a href="mailto:emanuele.cavalleri@unimi.it">emanuele dot cavalleri at unimi dot it</a></font>
   
 <hr>
-
 <script>
   const headers = document.querySelectorAll('.year-toggle');
 
   headers.forEach(function(header) {
+    const content = header.nextElementSibling;
+    content.style.maxHeight = "0px";
+  });
+
+  headers.forEach(function(header) {
     header.addEventListener('click', function() {
       const content = header.nextElementSibling;
-      const isOpen = content.style.display === "block";
+      const isOpen = content.style.maxHeight !== "0px" && content.style.maxHeight !== "";
 
       headers.forEach(function(h) {
         h.classList.add("collapsed");
         const c = h.nextElementSibling;
         if (c && c.classList.contains('year-content')) {
-          c.style.display = "none";
+          c.style.maxHeight = "0px";
+          c.classList.remove("open");
         }
       });
 
       if (!isOpen) {
-        content.style.display = "block";
+        content.style.maxHeight = content.scrollHeight + "px";
+        content.classList.add("open");
         header.classList.remove("collapsed");
       }
     });
   });
 </script>
+
 
 </body>
 </html>
