@@ -7,6 +7,24 @@
 
 <link rel="stylesheet" type="text/css" href="res.css">
 <title>Emanuele Cavalleri</title>
+
+<style>
+  .year-toggle {
+    cursor: pointer;
+    user-select: none;
+  }
+  .year-toggle::after {
+    content: " ▼";
+    font-size: 0.8em;
+  }
+  .collapsed::after {
+    content: " ▶";
+  }
+  .year-content {
+    display: none;
+    margin-left: 15px;
+  }
+</style>
 </head>
 
 <body>
@@ -22,7 +40,7 @@ I received a MSc degree (cum laude) in Bioinformatics at the University of Milan
 </p>
 
 <hr>
-  
+
 <h2>Publications</h2>
 
 <h4>2025</h4>
@@ -116,7 +134,8 @@ I received a MSc degree (cum laude) in Bioinformatics at the University of Milan
 
 </ul>	
 
-<h4>2024</h4>
+<h4 class="year-toggle collapsed">2024</h4>
+<div class="year-content">
 
 <ul>
 	
@@ -248,7 +267,10 @@ I received a MSc degree (cum laude) in Bioinformatics at the University of Milan
 
 </ul>	
 
-<h4>2023</h4>
+</div>
+
+<h4 class="year-toggle collapsed">2023</h4>
+<div class="year-content">
 
 <ul>
 
@@ -279,6 +301,7 @@ I received a MSc degree (cum laude) in Bioinformatics at the University of Milan
 
 
 </ul>
+</div>
 
 <hr>
 
@@ -306,4 +329,30 @@ I received a MSc degree (cum laude) in Bioinformatics at the University of Milan
   
 <hr>
 
-</body></html>
+<script>
+  const headers = document.querySelectorAll('.year-toggle');
+
+  headers.forEach(function(header) {
+    header.addEventListener('click', function() {
+      const content = header.nextElementSibling;
+      const isOpen = content.style.display === "block";
+
+      headers.forEach(function(h) {
+        h.classList.add("collapsed");
+        const c = h.nextElementSibling;
+        if (c && c.classList.contains('year-content')) {
+          c.style.display = "none";
+        }
+      });
+
+      if (!isOpen) {
+        content.style.display = "block";
+        header.classList.remove("collapsed");
+      }
+    });
+  });
+</script>
+
+</body>
+</html>
+
